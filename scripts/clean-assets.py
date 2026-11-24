@@ -13,9 +13,14 @@ from collections import deque
 import numpy as np
 from PIL import Image, ImageFilter
 
-SRC = "/Users/yogeshgurani/Downloads/doctor_website_section_assets"
-OUT = "/Users/yogeshgurani/doctor-website/public/assets"
-COLLAGE = "/Users/yogeshgurani/.claude/image-cache/f5cb0f7f-c0ea-47aa-8673-93b5ea9b8f1a/1.png"
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+SRC = os.path.join(ROOT, "assets-src", "section-crops")
+OUT = os.path.join(ROOT, "public", "assets")
+SRC_HERO = os.path.join(ROOT, "assets-src", "doctor-hero-source.png")
+# The design collage itself is not redistributed here. clinic-building.png was
+# cropped from it and is committed; drop the collage in as assets-src/collage.png
+# to regenerate that one crop.
+COLLAGE = os.path.join(ROOT, "assets-src", "collage.png")
 
 os.makedirs(OUT, exist_ok=True)
 
@@ -265,14 +270,15 @@ def split_grid(src, names, cols, rows, pad=6, v_min=200, s_max=26, scale=2, sat_
 
 print("hero / feature imagery")
 # 01 doctor hero portrait: aggressive key kills the grey card panel behind him
+# 01_doctor_hero_portrait is no longer shipped: doctor-tile.webp, cut from the
+# full-resolution hero source, replaces it in the consultation mockup.
 portrait = autocrop(largest_only(clean(load("01_doctor_hero_portrait.png"), v_min=176, s_max=42, speck=0, seed_alpha=False)))
 # Below the crossed arms the sleeve keyed into a jagged flame edge, because that
 # part of him overlapped the blue blob. Crop above the damage: a waist-up
 # portrait, feathered in CSS, beats a torn one.
 portrait = portrait.crop((0, 0, portrait.width, int(portrait.height * 0.755)))
 # one speck of keying residue survives below his sleeve
-portrait = knockout(portrait, 0.0, 0.88, 0.22)
-save(autocrop(portrait), "doctor-portrait", 3)
+del portrait
 
 # 10_doctor_full_figure is not shipped: the doctor keys cleanly but the blue
 # blobs behind him tear into a ragged silhouette that is obvious on the dark
@@ -287,13 +293,15 @@ save(inpaint_disc(about), "about-video", 3)
 save(autocrop(strip_chip(clean(load("07_medicine_store_products.png"), v_min=204, s_max=26, speck=120))), "medicine-group", 2)
 save(autocrop(strip_chip(clean(load("08_healthcare_heart_graphic.png"), v_min=200, s_max=30, speck=120))), "heart-graphic", 2)
 save(autocrop(strip_chip(clean(load("09_medical_equipment_graphic.png"), v_min=200, s_max=30, speck=120))), "equipment-graphic", 2)
-save(autocrop(largest_only(clean(load("11_decorative_abstract_shapes.png", bottom_crop=40), v_min=208, s_max=24, speck=0))), "wave-decor", 2)
 # 14_misc_medical_decor is too checkerboard-contaminated to rescue; those sparkles
 # and crosses are rebuilt in CSS/Three.js instead.
 
 print("clinic building (cropped from the collage: the shipped crop is mostly form UI)")
-collage = Image.open(COLLAGE).convert("RGBA")
-save(collage.crop((1126, 80, 1290, 191)), "clinic-building", 4)
+if os.path.exists(COLLAGE):
+    collage = Image.open(COLLAGE).convert("RGBA")
+    save(collage.crop((1126, 80, 1290, 191)), "clinic-building", 4)
+else:
+    print("  skipped: assets-src/collage.png not present, keeping the committed crop")
 
 print("service icons")
 split_grid(
@@ -335,5 +343,28 @@ for name, box in [
     ("med-capsules", (48, 182, 132, 232)),
 ]:
     save(autocrop(group.crop(box)), name, 2)
+
+print("hero composition (supplied separately, already has clean alpha)")
+if os.path.exists(SRC_HERO):
+    hero = Image.open(SRC_HERO).convert("RGBA")
+    # Trim the two far-left icon tiles so the doctor reads large in his column.
+    hero = hero.crop((455, 0, 1620, 941))
+    # The crop clips one icon tile in half at the left edge; cut the remainder
+    # rather than leave a severed shape floating beside the shield.
+    hero = knockout(hero, 0.0, 0.69, 0.05, 0.91, feather=4.0)
+    # WebP only: alpha-capable WebP is universally supported, and a 1.1 MB PNG
+    # fallback no browser would fetch is pure weight.
+    hero.save(os.path.join(OUT, "doctor-hero.webp"), quality=88, method=6)
+    small = hero.resize((720, round(720 * hero.height / hero.width)), Image.LANCZOS)
+    small.save(os.path.join(OUT, "doctor-hero-720.webp"), quality=86, method=6)
+    print(f"  doctor-hero.webp  {hero.width}x{hero.height} (+ 720w)")
+
+    # Tight crop on the doctor for the consultation call mockup.
+    tile = Image.open(SRC_HERO).convert("RGBA").crop((730, 20, 1395, 941))
+    tile.save(os.path.join(OUT, "doctor-tile.webp"), quality=88, method=6)
+    print(f"  doctor-tile.webp  {tile.width}x{tile.height}")
+
+# medicine-group is only the plate the product shots are cut from.
+os.remove(os.path.join(OUT, "medicine-group.png"))
 
 print("done ->", OUT)

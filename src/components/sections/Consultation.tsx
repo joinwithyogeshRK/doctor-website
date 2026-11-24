@@ -46,13 +46,13 @@ function CallMockup() {
           </div>
         ) : (
           <img
-            src="/assets/doctor-portrait.png"
+            src="/assets/doctor-tile.webp"
             alt=""
             aria-hidden
-            width={270}
-            height={480}
+            width={665}
+            height={921}
             loading="lazy"
-            className="mask-feather-b absolute bottom-0 left-1/2 h-[92%] w-auto -translate-x-1/2"
+            className="absolute bottom-0 left-1/2 h-[96%] w-auto -translate-x-1/2"
           />
         )}
 
