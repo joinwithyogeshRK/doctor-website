@@ -99,7 +99,7 @@ export function Payment() {
   }
 
   return (
-    <Section id="payment" tone="light">
+    <Section id="payment" tone="white">
       <div ref={reveal} className="container-page">
         <SectionHeading
           kicker="Payment"

@@ -4,15 +4,15 @@ import { ChevronDown } from 'lucide-react'
 import { cn } from '../../lib/format'
 
 const shell =
-  'w-full rounded-2xl border bg-white/85 px-4 text-[0.95rem] text-slate-ink placeholder:text-slate-muted/70 transition-colors duration-200 focus:bg-white'
-const ok = 'border-brand-100 hover:border-brand-200 focus:border-brand-500'
-const bad = 'border-rose-pulse/60 focus:border-rose-pulse'
+  'w-full rounded-2xl border bg-white px-4 text-[0.95rem] text-slate-ink placeholder:text-slate-muted/80 transition-colors duration-200'
+const ok = 'border-ice-200 hover:border-brand-200 focus:border-brand-500'
+const bad = 'border-rose-pulse/70 focus:border-rose-pulse'
 
 function Label({ htmlFor, children }: { htmlFor: string; children: ReactNode }) {
   return (
     <label
       htmlFor={htmlFor}
-      className="mb-1.5 block font-display text-[0.8rem] font-semibold text-slate-ink/80"
+      className="mb-1.5 block font-display text-[0.8rem] font-semibold text-slate-body"
     >
       {children}
     </label>
@@ -134,10 +134,10 @@ export function ChoiceGroup<T extends string>({
 }) {
   return (
     <fieldset>
-      <legend className="mb-1.5 font-display text-[0.8rem] font-semibold text-slate-ink/80">
+      <legend className="mb-1.5 font-display text-[0.8rem] font-semibold text-slate-body">
         {label}
       </legend>
-      <div className="grid grid-cols-3 gap-1.5 rounded-2xl border border-brand-100 bg-white/85 p-1.5">
+      <div className="grid grid-cols-3 gap-1.5 rounded-2xl border border-ice-200 bg-white p-1.5">
         {options.map((option) => {
           const active = option.value === value
           return (
@@ -149,7 +149,7 @@ export function ChoiceGroup<T extends string>({
               className={cn(
                 'rounded-xl py-2.5 text-[0.82rem] font-semibold transition-colors duration-200',
                 active
-                  ? 'bg-gradient-to-r from-brand-600 to-brand-500 text-white'
+                  ? 'bg-gradient-to-r from-brand-600 to-brand-700 text-white'
                   : 'text-slate-muted hover:bg-brand-50 hover:text-brand-700',
               )}
             >

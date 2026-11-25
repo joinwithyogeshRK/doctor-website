@@ -47,7 +47,7 @@ export function Footer() {
   const doc = openDoc ? legal[openDoc] : null
 
   return (
-    <footer className="relative bg-ink-900 pt-16 pb-8 text-brand-100/70">
+    <footer className="relative bg-ice-50 pt-16 pb-8 text-slate-muted">
       <div className="rule-fade absolute inset-x-0 top-0" />
 
       <div className="container-page">
@@ -67,7 +67,7 @@ export function Footer() {
                 </svg>
               </span>
               <span className="leading-tight">
-                <span className="block font-display text-[0.95rem] font-semibold text-white">
+                <span className="block font-display text-[0.95rem] font-semibold text-slate-ink">
                   {doctor.name}
                 </span>
                 <span className="block text-[0.72rem]">{doctor.designation}</span>
@@ -85,7 +85,7 @@ export function Footer() {
                   <a
                     href={social.href}
                     aria-label={social.label}
-                    className="grid h-10 w-10 place-items-center rounded-full border border-white/12 bg-white/6 text-white/80 transition-colors duration-250 hover:border-cyan-glow/50 hover:bg-white/12 hover:text-white"
+                    className="grid h-10 w-10 place-items-center rounded-full border border-ice-200 bg-white text-slate-muted transition-colors duration-250 hover:border-brand-300 hover:text-brand-700"
                   >
                     <social.icon />
                   </a>
@@ -96,7 +96,7 @@ export function Footer() {
 
           {/* Navigation */}
           <nav aria-label="Footer">
-            <h2 className="font-display text-[0.88rem] font-semibold text-white">
+            <h2 className="font-display text-[0.88rem] font-semibold text-slate-ink">
               Quick links
             </h2>
             <ul className="mt-4 space-y-2.5">
@@ -108,7 +108,7 @@ export function Footer() {
                       event.preventDefault()
                       scrollToSection(link.href)
                     }}
-                    className="text-[0.85rem] transition-colors hover:text-white"
+                    className="text-[0.85rem] transition-colors hover:text-brand-700"
                   >
                     {link.label}
                   </a>
@@ -118,7 +118,7 @@ export function Footer() {
           </nav>
 
           <div>
-            <h2 className="font-display text-[0.88rem] font-semibold text-white">
+            <h2 className="font-display text-[0.88rem] font-semibold text-slate-ink">
               Care
             </h2>
             <ul className="mt-4 space-y-2.5">
@@ -136,7 +136,7 @@ export function Footer() {
                       event.preventDefault()
                       scrollToSection(link.href)
                     }}
-                    className="text-[0.85rem] transition-colors hover:text-white"
+                    className="text-[0.85rem] transition-colors hover:text-brand-700"
                   >
                     {link.label}
                   </a>
@@ -147,18 +147,18 @@ export function Footer() {
 
           {/* Clinic details */}
           <div>
-            <h2 className="font-display text-[0.88rem] font-semibold text-white">
+            <h2 className="font-display text-[0.88rem] font-semibold text-slate-ink">
               Clinic details
             </h2>
             <address className="mt-4 space-y-1 text-[0.85rem] not-italic">
-              <p className="font-medium text-white/85">{clinic.name}</p>
+              <p className="font-medium text-slate-ink">{clinic.name}</p>
               {clinic.addressLines.map((line) => (
                 <p key={line}>{line}</p>
               ))}
               <p>
                 <a
                   href={`tel:${clinic.phone.replace(/\s/g, '')}`}
-                  className="transition-colors hover:text-white"
+                  className="transition-colors hover:text-brand-700"
                 >
                   {clinic.phone}
                 </a>
@@ -166,7 +166,7 @@ export function Footer() {
               <p>
                 <a
                   href={`mailto:${clinic.email}`}
-                  className="transition-colors hover:text-white"
+                  className="transition-colors hover:text-brand-700"
                 >
                   {clinic.email}
                 </a>
@@ -190,7 +190,7 @@ export function Footer() {
                 key={key}
                 type="button"
                 onClick={() => setOpenDoc(key)}
-                className="transition-colors hover:text-white"
+                className="transition-colors hover:text-brand-700"
               >
                 {legal[key].title}
               </button>
@@ -198,7 +198,7 @@ export function Footer() {
           </div>
         </div>
 
-        <p className="mt-6 text-center text-[0.72rem] text-brand-100/35">
+        <p className="mt-6 text-center text-[0.72rem] text-slate-muted/75">
           A frontend demonstration. No appointments, payments or orders are real.
         </p>
       </div>

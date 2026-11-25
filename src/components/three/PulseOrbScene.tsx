@@ -33,8 +33,8 @@ function Orb() {
         {/* Low metalness on purpose: there is no environment map in this scene,
             and a metal surface with nothing to reflect renders flat and dead. */}
         <meshStandardMaterial
-          color="#3f7bff"
-          emissive="#1b3cc4"
+          color="#4fb0dd"
+          emissive="#0d6f97"
           emissiveIntensity={0.3}
           roughness={0.38}
           metalness={0.12}
@@ -43,7 +43,7 @@ function Orb() {
       </mesh>
       <lineSegments ref={cage}>
         <edgesGeometry args={[new THREE.IcosahedronGeometry(1.32, 0)]} />
-        <lineBasicMaterial color="#36d7f4" transparent opacity={0.6} />
+        <lineBasicMaterial color="#14769f" transparent opacity={0.4} />
       </lineSegments>
     </Float>
   )
@@ -57,10 +57,10 @@ export default function PulseOrbScene() {
       gl={{ antialias: true, alpha: true }}
       style={{ pointerEvents: 'none' }}
     >
-      <ambientLight intensity={0.35} />
+      <ambientLight intensity={0.6} />
       <directionalLight position={[3.5, 4, 4]} intensity={2.6} color="#eaf1ff" />
-      <pointLight position={[-3.2, -1.6, 2.4]} intensity={30} color="#8b6bff" distance={12} />
-      {/* Rim from behind, so the silhouette separates from the navy */}
+      <pointLight position={[-3.2, -1.6, 2.4]} intensity={30} color="#38b6e8" distance={12} />
+      {/* Rim from behind, so the facets stay legible against the pale ground */}
       <pointLight position={[0, 1.2, -3.4]} intensity={26} color="#36d7f4" distance={10} />
       <Orb />
     </Canvas>

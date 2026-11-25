@@ -12,15 +12,17 @@ type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   icon?: ReactNode
 }
 
+/* brand-600 and brand-700 both clear AA under white text; the lighter steps in
+   the ramp do not, so they stay decorative. */
 const variants: Record<Variant, string> = {
   primary:
-    'bg-gradient-to-r from-brand-600 to-brand-500 text-white shadow-[0_18px_40px_-18px_rgb(29_78_216/0.9)] hover:shadow-[0_22px_50px_-16px_rgb(46_107_255/0.95)]',
+    'bg-gradient-to-r from-brand-600 to-brand-700 text-white shadow-[0_16px_34px_-18px_rgb(17_106_144/0.75)] hover:shadow-[0_20px_44px_-16px_rgb(17_106_144/0.85)]',
   ghost:
-    'bg-white/10 text-white border border-white/20 backdrop-blur-md hover:bg-white/16',
+    'border border-ice-200 bg-white text-slate-ink hover:border-brand-300 hover:text-brand-700',
   light:
     'bg-white text-brand-700 border border-brand-100 shadow-lift hover:border-brand-300',
   outline:
-    'border border-brand-600/30 text-brand-700 hover:border-brand-600 hover:bg-brand-50',
+    'border border-brand-600/35 text-brand-700 hover:border-brand-600 hover:bg-brand-50',
 }
 
 const sizes: Record<Size, string> = {

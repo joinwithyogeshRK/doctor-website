@@ -61,10 +61,10 @@ function MapPlaceholder() {
         <p className="font-display text-[0.82rem] font-semibold text-slate-ink">
           {clinic.name}
         </p>
-        <p className="text-[0.72rem] text-slate-muted">{clinic.addressLines[0]}</p>
+        <p className="text-[0.72rem] text-slate-body">{clinic.addressLines[0]}</p>
       </div>
 
-      <span className="absolute right-3.5 bottom-3.5 rounded-lg bg-white/85 px-2.5 py-1 text-[0.65rem] font-medium text-slate-muted backdrop-blur-sm">
+      <span className="absolute right-3.5 bottom-3.5 rounded-lg bg-white/90 px-2.5 py-1 text-[0.65rem] font-medium text-slate-body backdrop-blur-sm">
         Map placeholder
       </span>
     </div>
@@ -75,7 +75,7 @@ export function Clinic() {
   const reveal = useScrollReveal<HTMLDivElement>({ stagger: 0.06 })
 
   return (
-    <Section id="clinic" tone="ice">
+    <Section id="clinic" tone="mist">
       <div ref={reveal} className="container-page">
         <SectionHeading
           kicker="The clinic"

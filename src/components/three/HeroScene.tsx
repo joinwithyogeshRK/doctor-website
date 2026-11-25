@@ -5,7 +5,9 @@ import * as THREE from 'three'
 import { createParticlePositions } from './geometry'
 import { pointerState, scrollState } from '../../lib/scrollState'
 
-const CYAN = '#36d7f4'
+/* Additive blending disappears on a white page, so the field is drawn
+   normally in a mid sky tone instead. */
+const DUST = '#5aa8cf'
 
 type Quality = 'low' | 'high'
 
@@ -32,12 +34,11 @@ function ParticleField({ count }: { count: number }) {
   return (
     <points ref={points} geometry={geometry}>
       <pointsMaterial
-        size={0.032}
-        color={CYAN}
+        size={0.03}
+        color={DUST}
         transparent
-        opacity={0.6}
+        opacity={0.5}
         sizeAttenuation
-        blending={THREE.AdditiveBlending}
         depthWrite={false}
       />
     </points>

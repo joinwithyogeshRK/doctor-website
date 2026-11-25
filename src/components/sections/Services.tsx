@@ -12,7 +12,7 @@ import { Button } from '../ui/Button'
 const accents: Record<Service['accent'], string> = {
   brand: 'from-brand-500/18 to-brand-500/0',
   rose: 'from-rose-pulse/18 to-rose-pulse/0',
-  violet: 'from-violet-glow/18 to-violet-glow/0',
+  violet: 'from-teal-soft/14 to-teal-soft/0',
   cyan: 'from-cyan-glow/20 to-cyan-glow/0',
 }
 
@@ -98,7 +98,7 @@ export function Services() {
   const reveal = useScrollReveal<HTMLDivElement>({ stagger: 0.055 })
 
   return (
-    <Section id="services" tone="light">
+    <Section id="services" tone="white">
       <div ref={reveal} className="container-page">
         <SectionHeading
           kicker="Our services"

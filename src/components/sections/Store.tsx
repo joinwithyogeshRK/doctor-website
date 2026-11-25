@@ -17,17 +17,19 @@ function MedicineCard({ medicine }: { medicine: Medicine }) {
       data-reveal
       className="group flex flex-col overflow-hidden rounded-[1.5rem] border border-ice-200 bg-white transition-[transform,box-shadow,border-color] duration-400 ease-[var(--ease-out-quint)] hover:-translate-y-1.5 hover:border-brand-200 hover:shadow-lift"
     >
-      <div className="relative grid h-40 place-items-center overflow-hidden bg-[linear-gradient(160deg,#f2f7ff,#e2ecff)]">
+      {/* The product shots are opaque crops of one plate, not cutouts, so they
+          are framed as thumbnails rather than floated on the tile. */}
+      <div className="relative grid h-40 place-items-center overflow-hidden bg-ice-50 p-4">
         <img
           src={medicine.image}
           alt={medicine.name}
           width={240}
           height={200}
           loading="lazy"
-          className="max-h-[7.5rem] w-auto object-contain transition-transform duration-500 ease-[var(--ease-out-quint)] group-hover:scale-[1.06]"
+          className="max-h-full w-auto rounded-xl object-contain ring-1 ring-ice-200 transition-transform duration-500 ease-[var(--ease-out-quint)] group-hover:scale-[1.04]"
         />
         {medicine.prescriptionOnly ? (
-          <span className="absolute top-3 left-3 rounded-pill bg-white/90 px-2.5 py-1 text-[0.65rem] font-semibold text-brand-700 backdrop-blur-sm">
+          <span className="absolute top-3 left-3 z-10 rounded-pill bg-white/92 px-2.5 py-1 text-[0.65rem] font-semibold text-brand-700 shadow-[0_2px_8px_-4px_rgb(22_35_46/0.5)] backdrop-blur-sm">
             Prescription needed
           </span>
         ) : null}
@@ -70,7 +72,7 @@ export function Store() {
   const { itemCount, openCart } = useCart()
 
   return (
-    <Section id="store" tone="ice">
+    <Section id="store" tone="mist">
       <div ref={reveal} className="container-page">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <SectionHeading

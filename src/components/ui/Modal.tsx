@@ -61,7 +61,7 @@ export function Modal({
       {open ? (
         <div className="fixed inset-0 z-100 flex items-end justify-center p-4 sm:items-center">
           <motion.div
-            className="absolute inset-0 bg-ink-950/70 backdrop-blur-sm"
+            className="absolute inset-0 bg-slate-ink/45 backdrop-blur-sm"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -74,7 +74,7 @@ export function Modal({
             role="dialog"
             aria-modal="true"
             aria-labelledby={labelledBy}
-            className="relative w-full max-w-lg overflow-hidden rounded-[1.75rem] bg-white shadow-[0_40px_120px_-30px_rgb(5_11_36/0.6)] outline-none"
+            className="relative w-full max-w-lg overflow-hidden rounded-[1.75rem] bg-white shadow-[0_40px_120px_-30px_rgb(22_35_46/0.38)] outline-none"
             initial={{ opacity: 0, y: 24, scale: 0.97 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 16, scale: 0.98 }}

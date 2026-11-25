@@ -177,6 +177,44 @@ def largest_only(img):
     return Image.fromarray(arr, "RGBA")
 
 
+def to_sky(img, lo=205, hi=265, pull=0.55, target=198, sat=0.86):
+    """Shift the cobalt family toward sky blue, leaving the cyan glows alone.
+
+    The page palette is white, silver and sky blue; the supplied composition was
+    authored in cobalt, which sat apart from it.
+    """
+    a = np.array(img.convert("RGBA")).astype(np.float32)
+    rgb = a[:, :, :3] / 255.0
+    mx = rgb.max(2); mn = rgb.min(2)
+    v = mx
+    s_ = np.where(mx > 0, (mx - mn) / np.maximum(mx, 1e-6), 0)
+
+    d = mx - mn
+    h = np.zeros_like(mx)
+    m = d > 1e-6
+    r, g, b = rgb[:, :, 0], rgb[:, :, 1], rgb[:, :, 2]
+    i = (mx == r) & m; h[i] = ((g - b)[i] / d[i]) % 6
+    i = (mx == g) & m; h[i] = ((b - r)[i] / d[i]) + 2
+    i = (mx == b) & m; h[i] = ((r - g)[i] / d[i]) + 4
+    h = (h * 60) % 360
+
+    hit = (h > lo) & (h < hi) & (s_ > 0.15)
+    h[hit] = h[hit] - (h[hit] - target) * pull
+    s_[hit] = s_[hit] * sat
+
+    hp = h / 60.0
+    c = v * s_
+    x = c * (1 - np.abs(hp % 2 - 1))
+    off = v - c
+    z = np.zeros_like(c)
+    conds = [hp < 1, hp < 2, hp < 3, hp < 4, hp < 5, hp >= 5]
+    R = np.select(conds, [c, x, z, z, x, c])
+    G = np.select(conds, [x, c, c, x, z, z])
+    B = np.select(conds, [z, z, x, c, c, x])
+    a[:, :, :3] = np.clip(np.stack([R + off, G + off, B + off], axis=2), 0, 1) * 255
+    return Image.fromarray(a.astype(np.uint8), "RGBA")
+
+
 def knockout(img, x0f, y0f, x1f=1.0, y1f=1.0, feather=2.0):
     """Erase a fractional rectangle: used to cut keying residue beside a cutout."""
     arr = np.array(img)
@@ -352,6 +390,7 @@ if os.path.exists(SRC_HERO):
     # The crop clips one icon tile in half at the left edge; cut the remainder
     # rather than leave a severed shape floating beside the shield.
     hero = knockout(hero, 0.0, 0.69, 0.05, 0.91, feather=4.0)
+    hero = to_sky(hero)
     # WebP only: alpha-capable WebP is universally supported, and a 1.1 MB PNG
     # fallback no browser would fetch is pure weight.
     hero.save(os.path.join(OUT, "doctor-hero.webp"), quality=88, method=6)
@@ -360,7 +399,7 @@ if os.path.exists(SRC_HERO):
     print(f"  doctor-hero.webp  {hero.width}x{hero.height} (+ 720w)")
 
     # Tight crop on the doctor for the consultation call mockup.
-    tile = Image.open(SRC_HERO).convert("RGBA").crop((730, 20, 1395, 941))
+    tile = to_sky(Image.open(SRC_HERO).convert("RGBA").crop((730, 20, 1395, 941)))
     tile.save(os.path.join(OUT, "doctor-tile.webp"), quality=88, method=6)
     print(f"  doctor-tile.webp  {tile.width}x{tile.height}")
 

@@ -13,6 +13,31 @@ npm run build    # typecheck + production bundle into dist/
 npm run preview  # serve the built bundle
 ```
 
+## Palette
+
+White page, silver chrome, sky blue accent — the clinical register, with no
+navy or royal blue. The ramp lives in `src/index.css` as `@theme` tokens.
+
+| Role | Token | Value | Contrast |
+| --- | --- | --- | --- |
+| Page / panels | `white`, `ice-50`, `ice-100` | `#ffffff`, `#f9fbfd`, `#f1f6fa` | — |
+| Borders | `ice-200`, `silver-300` | `#e3ebf2`, `#cfdae4` | — |
+| Actions, accent text | `brand-600`, `brand-700` | `#14769f`, `#116a90` | 5.09 / 5.95 on white |
+| Decorative sky | `brand-100`–`brand-500` | `#dcf0fa`–`#2b9fd6` | decorative only |
+| Headings | `slate-ink` | `#16232e` | 15.98 |
+| Body | `slate-body` | `#41566b` | 7.59 |
+| Captions | `slate-muted` | `#5d7285` | 4.99 |
+| Errors | `rose-pulse` | `#c53a53` | 5.12 |
+
+Only `brand-600` and `brand-700` ever carry text or sit under white text; the
+lighter steps are decorative, because `brand-500` is 2.99:1 on white. Contrast
+was checked against the rendered page, not just the table — see "Verifying"
+below.
+
+The one place that stays dark is the inside of the video-call frame in the
+consultation section, in neutral slate rather than blue. A pale frame behind a
+white coat has nothing to separate against, and call windows read as screens.
+
 ## Stack
 
 React 19 · TypeScript · Vite · Tailwind v4 · Three.js via React Three Fiber and
@@ -76,7 +101,9 @@ python3 scripts/clean-assets.py   # needs Pillow and numpy
 ### The hero
 
 `assets-src/doctor-hero-source.png` is a 1672×941 composition with a real alpha
-channel — sharp, and clean at the edges (0.4% dark fringe). The script trims
+channel — sharp, and clean at the edges (0.4% dark fringe). It was authored in
+cobalt, so the script shifts that hue family toward sky blue to match the
+palette, leaving the cyan glows alone. The script also trims
 the two far-left icon tiles so the doctor reads large in his column, cuts the
 one tile the crop would otherwise sever, and exports WebP at 1165w and 720w
 (239 kB and 112 kB) with a PNG fallback. It is served through `<picture>` with
@@ -122,6 +149,23 @@ The design collage itself is not redistributed here. `clinic-building.png` was
 cropped from it and is committed; drop the collage in as `assets-src/collage.png`
 to regenerate that one crop, otherwise the script skips it and keeps the
 committed file.
+
+## Verifying
+
+Three scripted checks were run against the dev server and the deployment, not
+just eyeballed:
+
+- the interaction pass (booking validation and confirmation, slot gating, the
+  carousel, cart totals, checkout → payment, mock payment, accordion, modals),
+- an accessibility pass (alt text, accessible names, labelled controls, heading
+  order, landmarks, skip link),
+- a contrast pass that walks every visible text node and compares it with its
+  composited background at the AA threshold for its size and weight.
+
+The contrast pass cannot read `oklab()` or gradient backgrounds, so white text
+on the gradient buttons and anything inside the dark video frame come back as
+false positives; those were confirmed separately from their computed
+`background-image`.
 
 ## What is mocked
 

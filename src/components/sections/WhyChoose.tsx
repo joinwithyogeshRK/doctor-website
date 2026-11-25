@@ -7,14 +7,14 @@ export function WhyChoose() {
   const reveal = useScrollReveal<HTMLDivElement>({ stagger: 0.06 })
 
   return (
-    <Section id="why" tone="dark" className="overflow-hidden">
+    <Section id="why" tone="tint" className="overflow-hidden">
       <div
         aria-hidden
-        className="absolute inset-0 bg-[radial-gradient(85%_70%_at_50%_0%,#13225f_0%,#050b24_62%)]"
+        className="absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-white to-transparent"
       />
       <div
         aria-hidden
-        className="absolute -top-16 left-1/2 h-72 w-[42rem] -translate-x-1/2 rounded-full bg-cyan-glow/10 blur-[110px]"
+        className="absolute -top-20 left-1/2 h-72 w-[42rem] -translate-x-1/2 rounded-full bg-brand-200/35 blur-[120px]"
       />
 
       <div ref={reveal} className="container-page relative">
@@ -22,7 +22,6 @@ export function WhyChoose() {
           kicker="Why choose this practice"
           title="A trusted partner in health and wellness"
           lead="Six things that shape how care runs here, and the numbers behind each of them."
-          tone="dark"
         />
 
         <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -30,15 +29,15 @@ export function WhyChoose() {
             <article
               key={feature.id}
               data-reveal
-              className="group glass-dark relative overflow-hidden rounded-[1.5rem] p-6 transition-[transform,border-color] duration-400 ease-[var(--ease-out-quint)] hover:-translate-y-1.5 hover:border-cyan-glow/35"
+              className="group relative overflow-hidden rounded-[1.5rem] border border-ice-200 bg-white p-6 transition-[transform,border-color,box-shadow] duration-400 ease-[var(--ease-out-quint)] hover:-translate-y-1.5 hover:border-brand-300 hover:shadow-lift"
             >
               <span
                 aria-hidden
-                className="absolute -top-20 -right-16 h-44 w-44 rounded-full bg-cyan-glow/0 blur-3xl transition-colors duration-500 group-hover:bg-cyan-glow/14"
+                className="absolute -top-20 -right-16 h-44 w-44 rounded-full bg-brand-200/0 blur-3xl transition-colors duration-500 group-hover:bg-brand-200/45"
               />
 
               <div className="relative flex items-start justify-between gap-4">
-                <span className="grid h-14 w-14 place-items-center rounded-2xl bg-white/10 transition-transform duration-400 ease-[var(--ease-out-quint)] group-hover:scale-[1.07]">
+                <span className="grid h-14 w-14 place-items-center rounded-2xl bg-brand-50 transition-transform duration-400 ease-[var(--ease-out-quint)] group-hover:scale-[1.07]">
                   <img
                     src={feature.icon}
                     alt=""
@@ -55,16 +54,15 @@ export function WhyChoose() {
                       value={feature.stat.value}
                       suffix={feature.stat.suffix}
                       label={feature.stat.label}
-                      tone="dark"
                     />
                   </div>
                 ) : null}
               </div>
 
-              <h3 className="relative mt-6 font-display text-[1.0625rem] font-semibold text-white">
+              <h3 className="relative mt-6 font-display text-[1.0625rem] font-semibold text-slate-ink">
                 {feature.title}
               </h3>
-              <p className="relative mt-2 text-[0.88rem] leading-relaxed text-brand-100/70">
+              <p className="relative mt-2 text-[0.88rem] leading-relaxed text-slate-muted">
                 {feature.blurb}
               </p>
             </article>

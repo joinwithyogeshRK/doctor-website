@@ -33,7 +33,7 @@ export function Testimonials() {
   const current = testimonials[index]
 
   return (
-    <Section id="testimonials" tone="light">
+    <Section id="testimonials" tone="white">
       <div ref={reveal} className="container-page">
         <div className="flex flex-wrap items-end justify-between gap-8">
           <SectionHeading

@@ -45,7 +45,7 @@ export function CartDrawer() {
       {isOpen ? (
         <div className="fixed inset-0 z-120">
           <motion.div
-            className="absolute inset-0 bg-ink-950/65 backdrop-blur-sm"
+            className="absolute inset-0 bg-slate-ink/45 backdrop-blur-sm"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -57,7 +57,7 @@ export function CartDrawer() {
             role="dialog"
             aria-modal="true"
             aria-label="Shopping cart"
-            className="absolute inset-y-0 right-0 flex w-[min(92vw,26rem)] flex-col bg-white shadow-[-30px_0_80px_-30px_rgb(3_10_40/0.45)]"
+            className="absolute inset-y-0 right-0 flex w-[min(92vw,26rem)] flex-col bg-white shadow-[-30px_0_80px_-30px_rgb(22_35_46/0.28)]"
             initial={{ x: '100%' }}
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
@@ -110,14 +110,14 @@ export function CartDrawer() {
                 <ul className="flex-1 divide-y divide-ice-200 overflow-y-auto px-6">
                   {lines.map((line) => (
                     <li key={line.medicine.id} className="flex gap-4 py-5">
-                      <span className="grid h-16 w-16 shrink-0 place-items-center rounded-xl bg-[linear-gradient(160deg,#f2f7ff,#e2ecff)]">
+                      <span className="grid h-16 w-16 shrink-0 place-items-center rounded-xl bg-ice-50 p-1.5">
                         <img
                           src={line.medicine.image}
                           alt=""
                           aria-hidden
                           width={120}
                           height={100}
-                          className="max-h-11 w-auto object-contain"
+                          className="max-h-full w-auto rounded-lg object-contain ring-1 ring-ice-200"
                         />
                       </span>
 

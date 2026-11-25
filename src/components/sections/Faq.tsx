@@ -12,7 +12,7 @@ export function Faq() {
   const [openId, setOpenId] = useState<string | null>(faqs[0].id)
 
   return (
-    <Section id="faq" tone="light">
+    <Section id="faq" tone="white">
       <div ref={reveal} className="container-page">
         <SectionHeading
           kicker="Questions"

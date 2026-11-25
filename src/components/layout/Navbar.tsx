@@ -17,7 +17,7 @@ function Logo() {
       }}
       className="flex items-center gap-3"
     >
-      <span className="grid h-10 w-10 place-items-center rounded-xl bg-gradient-to-br from-brand-500 to-brand-700 shadow-[0_10px_24px_-10px_rgb(46_107_255/0.9)]">
+      <span className="grid h-10 w-10 place-items-center rounded-xl bg-gradient-to-br from-brand-500 to-brand-700 shadow-[0_10px_24px_-12px_rgb(20_118_159/0.8)]">
         <svg viewBox="0 0 32 32" className="h-5 w-5" fill="none" aria-hidden>
           <path
             d="M4 16h4.6l2.1-5 3.1 10 2.5-6.6 1.8 3.8H28"
@@ -29,10 +29,10 @@ function Logo() {
         </svg>
       </span>
       <span className="leading-tight">
-        <span className="block font-display text-[0.9rem] font-semibold whitespace-nowrap sm:text-[0.95rem]">
+        <span className="block font-display text-[0.9rem] font-semibold whitespace-nowrap text-slate-ink sm:text-[0.95rem]">
           {doctor.name}
         </span>
-        <span className="hidden text-[0.7rem] text-current opacity-60 sm:block">
+        <span className="hidden text-[0.7rem] text-slate-muted sm:block">
           {doctor.designation}
         </span>
       </span>
@@ -102,8 +102,8 @@ export function Navbar() {
         className={cn(
           'fixed inset-x-0 top-0 z-90 transition-[background-color,box-shadow,backdrop-filter] duration-500',
           scrolled
-            ? 'bg-ink-950/82 text-white shadow-[0_18px_50px_-30px_rgb(3_10_40/0.9)] backdrop-blur-xl'
-            : 'bg-transparent text-white',
+            ? 'border-b border-ice-200/80 bg-white/85 shadow-[0_12px_40px_-28px_rgb(22_35_46/0.5)] backdrop-blur-xl'
+            : 'border-b border-transparent bg-transparent',
         )}
       >
         <div className="container-page flex h-[var(--nav-h)] items-center justify-between gap-6">
@@ -122,15 +122,15 @@ export function Navbar() {
                 className={cn(
                   'relative rounded-pill px-3.5 py-2 text-[0.88rem] font-medium transition-colors duration-200',
                   active === link.href
-                    ? 'text-white'
-                    : 'text-brand-100/70 hover:text-white',
+                    ? 'text-slate-ink'
+                    : 'text-slate-muted hover:text-slate-ink',
                 )}
               >
                 {link.label}
                 {active === link.href ? (
                   <motion.span
                     layoutId="nav-active"
-                    className="absolute inset-0 -z-10 rounded-pill bg-white/12"
+                    className="absolute inset-0 -z-10 rounded-pill bg-brand-50"
                     transition={{ type: 'spring', stiffness: 380, damping: 32 }}
                   />
                 ) : null}
@@ -142,12 +142,12 @@ export function Navbar() {
             <button
               type="button"
               onClick={openCart}
-              className="relative grid h-11 w-11 place-items-center rounded-full border border-white/18 bg-white/10 text-white backdrop-blur-md transition-colors hover:bg-white/18"
+              className="relative grid h-11 w-11 place-items-center rounded-full border border-ice-200 bg-white text-slate-ink transition-colors hover:border-brand-300 hover:text-brand-700"
               aria-label={`Open cart, ${itemCount} item${itemCount === 1 ? '' : 's'}`}
             >
               <ShoppingBag className="h-[18px] w-[18px]" />
               {itemCount > 0 ? (
-                <span className="tnum absolute -top-1 -right-1 grid h-5 min-w-5 place-items-center rounded-full bg-cyan-glow px-1 font-display text-[0.65rem] font-bold text-ink-950">
+                <span className="tnum absolute -top-1 -right-1 grid h-5 min-w-5 place-items-center rounded-full bg-brand-600 px-1 font-display text-[0.65rem] font-bold text-white">
                   {itemCount}
                 </span>
               ) : null}
@@ -162,7 +162,7 @@ export function Navbar() {
             <button
               type="button"
               onClick={() => setMenuOpen(true)}
-              className="grid h-11 w-11 place-items-center rounded-full border border-white/18 bg-white/10 text-white backdrop-blur-md lg:hidden"
+              className="grid h-11 w-11 place-items-center rounded-full border border-ice-200 bg-white text-slate-ink transition-colors hover:border-brand-300 lg:hidden"
               aria-label="Open menu"
               aria-expanded={menuOpen}
             >
@@ -182,26 +182,26 @@ export function Navbar() {
             transition={{ duration: 0.22 }}
           >
             <div
-              className="absolute inset-0 bg-ink-950/80 backdrop-blur-md"
+              className="absolute inset-0 bg-slate-ink/45 backdrop-blur-md"
               onClick={() => setMenuOpen(false)}
             />
             <motion.nav
               aria-label="Mobile"
-              className="absolute inset-y-0 right-0 flex w-[min(88vw,22rem)] flex-col gap-2 bg-ink-900 p-6 pt-5"
+              className="absolute inset-y-0 right-0 flex w-[min(88vw,22rem)] flex-col gap-2 bg-white p-6 pt-5"
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ duration: 0.34, ease: [0.22, 1, 0.36, 1] }}
             >
-              <div className="mb-6 flex items-center justify-between text-white">
-                <span className="font-display text-sm font-semibold opacity-70">
+              <div className="mb-6 flex items-center justify-between">
+                <span className="font-display text-sm font-semibold text-slate-muted">
                   Menu
                 </span>
                 <button
                   type="button"
                   onClick={() => setMenuOpen(false)}
                   aria-label="Close menu"
-                  className="grid h-10 w-10 place-items-center rounded-full border border-white/15 bg-white/8"
+                  className="grid h-10 w-10 place-items-center rounded-full border border-ice-200 bg-white text-slate-ink"
                 >
                   <X className="h-4 w-4" />
                 </button>
@@ -215,7 +215,7 @@ export function Navbar() {
                     event.preventDefault()
                     go(link.href)
                   }}
-                  className="rounded-2xl px-4 py-3.5 font-display text-lg font-medium text-white/85 transition-colors hover:bg-white/8 hover:text-white"
+                  className="rounded-2xl px-4 py-3.5 font-display text-lg font-medium text-slate-body transition-colors hover:bg-brand-50 hover:text-brand-700"
                 >
                   {link.label}
                 </a>
@@ -226,7 +226,7 @@ export function Navbar() {
               </Button>
               <a
                 href={`tel:${doctor.phone.replace(/\s/g, '')}`}
-                className="mt-auto text-center text-sm text-brand-100/60"
+                className="mt-auto text-center text-sm text-slate-muted"
               >
                 {doctor.phone}
               </a>

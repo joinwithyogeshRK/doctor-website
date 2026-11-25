@@ -65,25 +65,21 @@ export function Hero() {
     <section
       ref={root}
       id="hero"
-      className="relative isolate overflow-hidden bg-ink-950 pt-[var(--nav-h)]"
+      className="relative isolate overflow-hidden bg-white pt-[var(--nav-h)]"
     >
-      {/* Gradient ground: one cool key light from the upper right, then vignette */}
+      {/* Pale sky wash from the upper right, over white */}
       <div
         aria-hidden
-        className="absolute inset-0 -z-20 bg-[radial-gradient(130%_90%_at_78%_8%,#1a2f8f_0%,#0c1746_38%,#060d2a_72%,#04081c_100%)]"
+        className="absolute inset-0 -z-20 bg-[radial-gradient(120%_85%_at_80%_6%,#e4f2fb_0%,#f2f8fc_42%,#ffffff_76%)]"
       />
       <div
         aria-hidden
-        className="absolute inset-0 -z-20 bg-[radial-gradient(60%_50%_at_50%_120%,rgba(54,215,244,0.1),transparent_70%)]"
+        className="absolute inset-0 -z-20 bg-[radial-gradient(55%_45%_at_52%_118%,rgba(56,182,232,0.16),transparent_70%)]"
       />
+      {/* Faint silver grid, far enough back to read as texture rather than decoration */}
       <div
         aria-hidden
-        className="absolute inset-x-0 top-0 -z-20 h-px bg-gradient-to-r from-transparent via-cyan-glow/35 to-transparent"
-      />
-      {/* Faint grid, far enough back to read as texture rather than decoration */}
-      <div
-        aria-hidden
-        className="absolute inset-0 -z-20 opacity-[0.09] [background-image:linear-gradient(rgba(140,180,255,.2)_1px,transparent_1px),linear-gradient(90deg,rgba(140,180,255,.2)_1px,transparent_1px)] [background-size:76px_76px] [mask-image:radial-gradient(65%_55%_at_60%_30%,black,transparent)]"
+        className="absolute inset-0 -z-20 opacity-[0.4] [background-image:linear-gradient(rgba(159,180,198,.2)_1px,transparent_1px),linear-gradient(90deg,rgba(159,180,198,.22)_1px,transparent_1px)] [background-size:76px_76px] [mask-image:radial-gradient(62%_52%_at_62%_28%,black,transparent)]"
       />
 
       <div className="container-page grid min-h-[calc(100svh-var(--nav-h))] items-center gap-8 pt-10 pb-16 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.06fr)] lg:gap-10 lg:pt-0 lg:pb-0">
@@ -91,13 +87,13 @@ export function Hero() {
         <div className="relative z-10 max-w-xl">
           <p
             data-hero-chip
-            className="inline-flex items-center gap-2 rounded-pill border border-white/14 bg-white/[0.07] px-3.5 py-1.5 font-display text-[0.78rem] font-medium text-brand-100/85 backdrop-blur-md"
+            className="inline-flex items-center gap-2 rounded-pill border border-ice-200 bg-white/85 px-3.5 py-1.5 font-display text-[0.78rem] font-medium text-slate-body shadow-[0_6px_20px_-14px_rgb(22_35_46/0.5)] backdrop-blur-md"
           >
-            <ShieldCheck className="h-3.5 w-3.5 text-cyan-glow" />
+            <ShieldCheck className="h-3.5 w-3.5 text-brand-600" />
             {doctor.credentials} · {doctor.registration}
           </p>
 
-          <h1 className="mt-6 font-display text-[clamp(2.7rem,6vw,4.15rem)] leading-[1.02] font-semibold tracking-[-0.038em] text-white">
+          <h1 className="mt-6 font-display text-[clamp(2.7rem,6vw,4.15rem)] leading-[1.02] font-semibold tracking-[-0.038em] text-slate-ink">
             {doctor.headline.map((line, i) => (
               <span key={line} className="block overflow-hidden pb-[0.08em]">
                 <span
@@ -112,7 +108,7 @@ export function Hero() {
 
           <p
             data-hero-copy
-            className="mt-6 max-w-[46ch] text-[1.05rem] leading-[1.65] text-brand-100/70"
+            className="mt-6 max-w-[46ch] text-[1.05rem] leading-[1.65] text-slate-body"
           >
             {doctor.intro}
           </p>
@@ -142,27 +138,27 @@ export function Hero() {
               event.preventDefault()
               scrollToSection('#appointment')
             }}
-            className="mt-6 inline-flex items-center gap-2.5 rounded-pill border border-white/12 bg-white/[0.05] py-2 pr-4 pl-2.5 text-[0.82rem] transition-colors duration-300 hover:border-cyan-glow/40 hover:bg-white/10"
+            className="mt-6 inline-flex items-center gap-2.5 rounded-pill border border-ice-200 bg-white py-2 pr-4 pl-2.5 text-[0.82rem] shadow-[0_8px_24px_-18px_rgb(22_35_46/0.6)] transition-colors duration-300 hover:border-brand-300 hover:bg-brand-50"
           >
-            <span className="grid h-7 w-7 place-items-center rounded-full bg-white/10 text-cyan-glow">
+            <span className="grid h-7 w-7 place-items-center rounded-full bg-brand-50 text-brand-600">
               <CalendarClock className="h-[15px] w-[15px]" />
             </span>
             <span className="relative grid h-1.5 w-1.5 place-items-center">
-              <span className="absolute h-1.5 w-1.5 rounded-full bg-cyan-glow animate-pulse-ring" />
-              <span className="h-1.5 w-1.5 rounded-full bg-cyan-glow" />
+              <span className="absolute h-1.5 w-1.5 rounded-full bg-teal-soft animate-pulse-ring" />
+              <span className="h-1.5 w-1.5 rounded-full bg-teal-soft" />
             </span>
-            <span className="font-display font-semibold text-white">Booking now</span>
-            <span className="text-brand-100/60">
+            <span className="font-display font-semibold text-slate-ink">Booking now</span>
+            <span className="text-slate-muted">
               {nextSlot
                 ? `next slot ${nextSlot.day} ${nextSlot.date}, ${nextSlot.time}`
                 : 'call the clinic for openings'}
             </span>
           </a>
 
-          <dl className="mt-10 grid max-w-lg grid-cols-3 gap-4 border-t border-white/10 pt-7 sm:gap-6">
+          <dl className="mt-10 grid max-w-lg grid-cols-3 gap-4 border-t border-ice-200 pt-7 sm:gap-6">
             {heroStats.map((stat) => (
               <div key={stat.label} data-hero-stat>
-                <CountStat {...stat} tone="dark" />
+                <CountStat {...stat} />
               </div>
             ))}
           </dl>
@@ -181,7 +177,7 @@ export function Hero() {
               {/* Stage glow, grounds the subject instead of leaving it floating */}
               <div
                 aria-hidden
-                className="absolute inset-x-[4%] bottom-[1%] -z-10 h-[26%] rounded-[50%] bg-[radial-gradient(ellipse_at_center,rgba(46,107,255,0.5),rgba(54,215,244,0.14)_52%,transparent_75%)] blur-2xl"
+                className="absolute inset-x-[4%] bottom-[1%] -z-10 h-[26%] rounded-[50%] bg-[radial-gradient(ellipse_at_center,rgba(56,182,232,0.3),rgba(56,182,232,0.08)_55%,transparent_78%)] blur-2xl"
               />
               <img
                 src="/assets/doctor-hero.webp"
@@ -192,7 +188,7 @@ export function Hero() {
                 height={941}
                 fetchPriority="high"
                 decoding="async"
-                className="max-h-full w-auto max-w-none shrink-0 drop-shadow-[0_34px_70px_rgba(3,10,40,0.6)] [mask-image:linear-gradient(to_right,transparent,black_6%,black_100%)] lg:max-h-none lg:w-full"
+                className="max-h-full w-auto max-w-none shrink-0 drop-shadow-[0_28px_55px_rgba(22,35,46,0.16)] [mask-image:linear-gradient(to_right,transparent,black_6%,black_100%)] lg:max-h-none lg:w-full"
               />
             </div>
           </div>
@@ -203,7 +199,7 @@ export function Hero() {
       {/* Section seam into the booking panel below */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-b from-transparent to-ink-950"
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-gradient-to-b from-transparent to-ice-100"
       />
     </section>
   )

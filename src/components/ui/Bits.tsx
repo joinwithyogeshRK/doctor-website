@@ -73,42 +73,23 @@ export function CountStat({
   suffix,
   label,
   caption,
-  tone = 'dark',
 }: {
   value: number
   suffix?: string
   label: string
   caption?: string
-  tone?: 'dark' | 'light'
 }) {
   const { ref, value: shown } = useCountUp(value)
-  const dark = tone === 'dark'
 
   return (
     <div>
-      <p
-        className={cn(
-          'tnum font-display text-[clamp(1.6rem,3vw,2.1rem)] leading-none font-semibold',
-          dark ? 'text-white' : 'text-slate-ink',
-        )}
-      >
+      <p className="tnum font-display text-[clamp(1.6rem,3vw,2.1rem)] leading-none font-semibold text-slate-ink">
         <span ref={ref}>{formatCount(shown)}</span>
-        {suffix ? (
-          <span className={dark ? 'text-cyan-glow' : 'text-brand-500'}>{suffix}</span>
-        ) : null}
+        {suffix ? <span className="text-brand-600">{suffix}</span> : null}
       </p>
-      <p
-        className={cn(
-          'mt-1.5 text-[0.82rem] font-medium',
-          dark ? 'text-brand-100/80' : 'text-slate-muted',
-        )}
-      >
-        {label}
-      </p>
+      <p className="mt-1.5 text-[0.82rem] font-medium text-slate-body">{label}</p>
       {caption ? (
-        <p className={cn('text-[0.72rem]', dark ? 'text-brand-200/45' : 'text-slate-muted/70')}>
-          {caption}
-        </p>
+        <p className="text-[0.72rem] text-slate-muted">{caption}</p>
       ) : null}
     </div>
   )

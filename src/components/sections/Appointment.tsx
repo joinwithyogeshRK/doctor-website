@@ -122,15 +122,11 @@ export function Appointment() {
   return (
     <section
       id="appointment"
-      className="relative scroll-mt-24 overflow-hidden bg-ink-950 pb-20 md:pb-28"
+      className="relative scroll-mt-24 overflow-hidden bg-ice-100 pb-20 md:pb-28"
     >
       <div
         aria-hidden
-        className="absolute inset-0 bg-[radial-gradient(90%_60%_at_20%_0%,#132272_0%,#050b24_60%)]"
-      />
-      <div
-        aria-hidden
-        className="absolute -right-24 bottom-10 h-72 w-72 rounded-full bg-violet-glow/14 blur-[90px]"
+        className="absolute -right-24 bottom-10 h-72 w-72 rounded-full bg-brand-200/40 blur-[90px]"
       />
 
       <div ref={reveal} className="container-page relative">
@@ -138,7 +134,7 @@ export function Appointment() {
           {/* Form card */}
           <div
             data-reveal
-            className="rounded-[1.75rem] bg-white p-6 shadow-[0_50px_120px_-50px_rgb(3_10_40/0.95)] sm:p-8"
+            className="rounded-[1.75rem] border border-ice-200 bg-white p-6 shadow-panel sm:p-8"
           >
             <h2 className="font-display text-2xl font-semibold tracking-[-0.02em] text-slate-ink">
               Book your appointment
@@ -152,7 +148,7 @@ export function Appointment() {
               {submitted && errorCount > 0 ? (
                 <p
                   role="alert"
-                  className="flex items-start gap-2.5 rounded-2xl bg-rose-pulse/8 px-4 py-3 text-[0.85rem] text-rose-pulse"
+                  className="flex items-start gap-2.5 rounded-2xl bg-rose-pulse/10 px-4 py-3 text-[0.85rem] text-rose-pulse"
                 >
                   <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" />
                   <span>
@@ -165,7 +161,7 @@ export function Appointment() {
               {status === 'error' ? (
                 <p
                   role="alert"
-                  className="flex items-start gap-2.5 rounded-2xl bg-amber-500/10 px-4 py-3 text-[0.85rem] text-amber-700"
+                  className="flex items-start gap-2.5 rounded-2xl bg-amber-note/10 px-4 py-3 text-[0.85rem] text-amber-note"
                 >
                   <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" />
                   <span>
@@ -271,26 +267,26 @@ export function Appointment() {
           {/* Supporting column */}
           <div className="flex flex-col gap-5">
             <div data-reveal className="glass-dark rounded-[1.75rem] p-6 sm:p-7">
-              <h3 className="font-display text-lg font-semibold text-white">
+              <h3 className="font-display text-lg font-semibold text-slate-ink">
                 What happens after you send this
               </h3>
               <ol className="mt-5 space-y-5">
                 {STEPS.map((step, i) => (
                   <li key={step.title} className="flex gap-4">
-                    <span className="relative grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-white/10 text-cyan-glow">
+                    <span className="relative grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-brand-50 text-brand-600">
                       <step.icon className="h-[18px] w-[18px]" />
                       {i < STEPS.length - 1 ? (
                         <span
                           aria-hidden
-                          className="absolute top-[calc(100%+6px)] left-1/2 h-[18px] w-px -translate-x-1/2 bg-white/14"
+                          className="absolute top-[calc(100%+6px)] left-1/2 h-[18px] w-px -translate-x-1/2 bg-silver-300"
                         />
                       ) : null}
                     </span>
                     <span className="pt-0.5">
-                      <span className="block font-display text-[0.95rem] font-semibold text-white">
+                      <span className="block font-display text-[0.95rem] font-semibold text-slate-ink">
                         {step.title}
                       </span>
-                      <span className="mt-1 block text-[0.85rem] leading-relaxed text-brand-100/65">
+                      <span className="mt-1 block text-[0.85rem] leading-relaxed text-slate-muted">
                         {step.detail}
                       </span>
                     </span>
@@ -304,16 +300,16 @@ export function Appointment() {
               className="glass-dark relative overflow-hidden rounded-[1.75rem] p-6 sm:p-7"
             >
               <div className="relative z-10">
-                <p className="font-display text-sm font-semibold text-cyan-glow">
+                <p className="font-display text-sm font-semibold text-brand-700">
                   Today at the clinic
                 </p>
-                <p className="mt-2 text-[0.92rem] leading-relaxed text-brand-100/75">
+                <p className="mt-2 text-[0.92rem] leading-relaxed text-slate-body">
                   {clinic.hours[0].time.split(',')[1]?.trim()} — four evening slots
                   remain. Video consultations run every weekday evening.
                 </p>
                 <a
                   href={`tel:${doctor.phone.replace(/\s/g, '')}`}
-                  className="mt-4 inline-flex items-center gap-2 font-display text-[0.9rem] font-semibold text-white underline-offset-4 hover:underline"
+                  className="mt-4 inline-flex items-center gap-2 font-display text-[0.9rem] font-semibold text-slate-ink underline-offset-4 hover:text-brand-700 hover:underline"
                 >
                   {doctor.phone}
                 </a>
@@ -325,7 +321,7 @@ export function Appointment() {
                 width={474}
                 height={218}
                 loading="lazy"
-                className="pointer-events-none absolute -right-8 -bottom-6 w-44 opacity-40 select-none"
+                className="pointer-events-none absolute -right-8 -bottom-6 w-44 opacity-80 select-none [mask-image:radial-gradient(closest-side,black_72%,transparent_100%)]"
               />
             </div>
 
@@ -343,13 +339,13 @@ export function Appointment() {
                       width={189}
                       height={189}
                       loading="lazy"
-                      className="h-11 w-11 rounded-full object-cover ring-2 ring-ink-900"
+                      className="h-11 w-11 rounded-full object-cover ring-2 ring-white"
                     />
                   </li>
                 ))}
               </ul>
-              <p className="text-[0.85rem] leading-relaxed text-brand-100/75">
-                <span className="font-display font-semibold text-white">
+              <p className="text-[0.85rem] leading-relaxed text-slate-body">
+                <span className="font-display font-semibold text-slate-ink">
                   5,000 patients
                 </span>{' '}
                 have been treated here since 2011, rating care 98% positive.

@@ -17,7 +17,7 @@ export function About() {
   const [playerOpen, setPlayerOpen] = useState(false)
 
   return (
-    <Section id="about" tone="ice">
+    <Section id="about" tone="mist">
       <div
         aria-hidden
         className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-white to-transparent"
@@ -29,7 +29,7 @@ export function About() {
           <div className="relative">
             <div
               data-reveal
-              className="relative overflow-hidden rounded-[1.75rem] bg-ink-900 shadow-[0_40px_90px_-40px_rgb(10_21_64/0.7)]"
+              className="relative overflow-hidden rounded-[1.75rem] border border-ice-200 bg-white shadow-panel"
             >
               <img
                 src="/assets/about-video.png"
@@ -43,9 +43,9 @@ export function About() {
                 type="button"
                 onClick={() => setPlayerOpen(true)}
                 aria-label="Play the clinic introduction"
-                className="absolute inset-0 grid place-items-center bg-ink-950/10 transition-colors duration-300 hover:bg-ink-950/25"
+                className="absolute inset-0 grid place-items-center bg-slate-ink/5 transition-colors duration-300 hover:bg-slate-ink/20"
               >
-                <span className="relative grid h-[4.5rem] w-[4.5rem] place-items-center rounded-full bg-white/95 text-brand-700 shadow-[0_18px_40px_-14px_rgb(3_10_40/0.7)] transition-transform duration-300 hover:scale-105">
+                <span className="relative grid h-[4.5rem] w-[4.5rem] place-items-center rounded-full bg-white/95 text-brand-700 shadow-[0_18px_40px_-14px_rgb(22_35_46/0.45)] transition-transform duration-300 hover:scale-105">
                   <span
                     aria-hidden
                     className="absolute inset-0 rounded-full bg-white/70 animate-pulse-ring"
@@ -66,7 +66,7 @@ export function About() {
                 width={490}
                 height={286}
                 loading="lazy"
-                className="h-20 w-auto animate-orb"
+                className="h-20 w-auto animate-orb [mask-image:radial-gradient(closest-side,black_72%,transparent_100%)]"
               />
               <div>
                 <p className="font-display text-sm font-semibold text-slate-ink">
@@ -82,9 +82,9 @@ export function About() {
               data-reveal
               className="mt-6 grid grid-cols-3 gap-4 rounded-[1.5rem] border border-ice-200 bg-white p-5"
             >
-              <CountStat value={15} suffix="+" label="Years" tone="light" />
-              <CountStat value={5000} suffix="+" label="Patients" tone="light" />
-              <CountStat value={18} label="Papers" tone="light" />
+              <CountStat value={15} suffix="+" label="Years" />
+              <CountStat value={5000} suffix="+" label="Patients" />
+              <CountStat value={18} label="Papers" />
             </div>
           </div>
 
@@ -221,7 +221,7 @@ export function About() {
           <h3 id="player-title" className="sr-only">
             Clinic introduction
           </h3>
-          <div className="overflow-hidden rounded-2xl bg-ink-900">
+          <div className="overflow-hidden rounded-2xl bg-slate-ink">
             <img
               src="/assets/about-video.png"
               alt=""

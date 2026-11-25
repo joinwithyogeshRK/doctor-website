@@ -4,40 +4,43 @@
   --font-display: 'Sora', ui-sans-serif, system-ui, sans-serif;
   --font-sans: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
 
-  /* Deep navy ground, taken from the design reference */
-  --color-ink-950: #050b24;
-  --color-ink-900: #081031;
-  --color-ink-800: #0a1540;
-  --color-ink-700: #121f57;
+  /* Sky-blue brand ramp. 500 and below are decorative only; 600 and 700 are
+     the ones that carry text or sit under white text, and both clear AA. */
+  --color-brand-50: #eff8fd;
+  --color-brand-100: #dcf0fa;
+  --color-brand-200: #bce3f6;
+  --color-brand-300: #8acfef;
+  --color-brand-400: #52b6e4;
+  --color-brand-500: #2b9fd6;
+  --color-brand-600: #14769f;
+  --color-brand-700: #116a90;
 
-  /* Royal blue brand ramp */
-  --color-brand-50: #eef3ff;
-  --color-brand-100: #dbe5ff;
-  --color-brand-200: #bdd0ff;
-  --color-brand-300: #93b1ff;
-  --color-brand-400: #628bff;
-  --color-brand-500: #2e6bff;
-  --color-brand-600: #1d4ed8;
-  --color-brand-700: #1a3fae;
+  /* Surfaces: white, then two pale tints for section rhythm */
+  --color-ice-50: #f9fbfd;
+  --color-ice-100: #f1f6fa;
+  --color-ice-200: #e3ebf2;
 
-  /* Accent lighting */
-  --color-cyan-glow: #36d7f4;
-  --color-violet-glow: #8b6bff;
-  --color-rose-pulse: #ff5d7a;
+  /* Silver, for dividers and chrome */
+  --color-silver-200: #e8eef4;
+  --color-silver-300: #cfdae4;
+  --color-silver-400: #b3c3d1;
 
-  /* Soft blue content surfaces */
-  --color-ice-50: #f6f9ff;
-  --color-ice-100: #eaf1ff;
-  --color-ice-200: #dbe6fb;
+  /* Accents, used sparingly */
+  --color-cyan-glow: #38b6e8;
+  --color-teal-soft: #0f8a86;
+  --color-rose-pulse: #c53a53;
+  --color-amber-note: #9a6410;
 
-  --color-slate-ink: #0f1b3d;
-  --color-slate-muted: #5b6b93;
+  /* Text */
+  --color-slate-ink: #16232e;
+  --color-slate-body: #41566b;
+  --color-slate-muted: #5d7285;
 
   --radius-card: 1.5rem;
   --radius-pill: 999px;
 
-  --shadow-lift: 0 24px 60px -24px rgb(12 28 82 / 0.28);
-  --shadow-glass: 0 30px 80px -40px rgb(3 10 40 / 0.75);
+  --shadow-lift: 0 18px 44px -24px rgb(22 35 46 / 0.22);
+  --shadow-panel: 0 28px 70px -40px rgb(22 35 46 / 0.3);
 
   --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
 }
@@ -53,7 +56,7 @@
   }
 
   body {
-    @apply bg-ice-50 font-sans text-slate-ink antialiased;
+    @apply bg-white font-sans text-slate-body antialiased;
     overflow-x: hidden;
   }
 
@@ -61,7 +64,7 @@
   h2,
   h3,
   h4 {
-    @apply font-display;
+    @apply font-display text-slate-ink;
     text-wrap: balance;
   }
 
@@ -70,12 +73,12 @@
   }
 
   ::selection {
-    background: var(--color-brand-500);
-    color: white;
+    background: var(--color-brand-100);
+    color: var(--color-slate-ink);
   }
 
   :focus-visible {
-    outline: 2px solid var(--color-cyan-glow);
+    outline: 2px solid var(--color-brand-600);
     outline-offset: 3px;
     border-radius: 4px;
   }
@@ -96,26 +99,26 @@
     @apply mx-auto w-full max-w-[1200px] px-5 sm:px-8;
   }
 
-  /* Frosted panel on the dark ground */
+  /* Panel that sits on a tinted section */
   .glass-dark {
     background: linear-gradient(
       145deg,
-      rgb(255 255 255 / 0.11),
-      rgb(255 255 255 / 0.03)
+      rgb(255 255 255 / 0.96),
+      rgb(249 251 253 / 0.88)
     );
-    border: 1px solid rgb(255 255 255 / 0.12);
-    backdrop-filter: blur(18px) saturate(140%);
-    box-shadow: var(--shadow-glass);
+    border: 1px solid var(--color-ice-200);
+    backdrop-filter: blur(14px);
+    box-shadow: var(--shadow-lift);
   }
 
-  /* Frosted panel on the light ground */
+  /* Panel that sits on white */
   .glass-light {
     background: linear-gradient(
       145deg,
-      rgb(255 255 255 / 0.92),
-      rgb(241 246 255 / 0.78)
+      rgb(255 255 255 / 0.96),
+      rgb(241 246 250 / 0.9)
     );
-    border: 1px solid rgb(29 78 216 / 0.09);
+    border: 1px solid var(--color-ice-200);
     backdrop-filter: blur(14px);
     box-shadow: var(--shadow-lift);
   }
@@ -123,23 +126,23 @@
   .text-gradient-cool {
     background: linear-gradient(
       100deg,
-      var(--color-cyan-glow),
-      var(--color-brand-300) 55%,
-      var(--color-violet-glow)
+      var(--color-brand-600),
+      #1f90c2 50%,
+      var(--color-teal-soft)
     );
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
   }
 
-  /* A hairline that fades at both ends, used to separate dark sections */
+  /* A hairline that fades at both ends, used to separate stacked blocks */
   .rule-fade {
     height: 1px;
     background: linear-gradient(
       90deg,
       transparent,
-      rgb(255 255 255 / 0.16) 20%,
-      rgb(255 255 255 / 0.16) 80%,
+      var(--color-silver-300) 20%,
+      var(--color-silver-300) 80%,
       transparent
     );
   }
@@ -148,22 +151,6 @@
 @layer utilities {
   .tnum {
     font-variant-numeric: tabular-nums;
-  }
-
-  /* Softens the keying residue along the cutout's lower edge */
-  .mask-feather-b {
-    -webkit-mask-image: linear-gradient(
-      to bottom,
-      black 78%,
-      rgb(0 0 0 / 0.55) 92%,
-      transparent 100%
-    );
-    mask-image: linear-gradient(
-      to bottom,
-      black 78%,
-      rgb(0 0 0 / 0.55) 92%,
-      transparent 100%
-    );
   }
 
   .scrollbar-none {
