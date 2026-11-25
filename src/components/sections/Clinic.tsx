@@ -49,9 +49,9 @@ function MapPlaceholder() {
         <span className="relative grid place-items-center">
           <span
             aria-hidden
-            className="absolute h-10 w-10 rounded-full bg-brand-500/35 animate-pulse-ring"
+            className="absolute h-10 w-10 rounded-full bg-brand-400/45 animate-pulse-ring"
           />
-          <span className="relative grid h-10 w-10 place-items-center rounded-full bg-brand-600 text-white shadow-[0_12px_24px_-10px_rgb(29_78_216/0.9)]">
+          <span className="relative grid h-10 w-10 place-items-center rounded-full bg-brand-600 text-white shadow-[0_12px_24px_-10px_rgb(17_106_144/0.75)]">
             <MapPin className="h-5 w-5" />
           </span>
         </span>

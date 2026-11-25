@@ -13,8 +13,8 @@ const PulseOrbScene = lazy(() => import('./PulseOrbScene'))
 function SceneFallback() {
   return (
     <div aria-hidden className="absolute inset-0 overflow-hidden">
-      <div className="absolute top-[12%] left-[8%] h-[42%] w-[52%] rounded-full bg-[radial-gradient(circle_at_45%_40%,rgba(54,215,244,0.3),rgba(46,107,255,0.18)_45%,transparent_72%)] blur-2xl" />
-      <div className="absolute right-[6%] bottom-[18%] h-[38%] w-[44%] rounded-full bg-[radial-gradient(circle_at_50%_50%,rgba(139,107,255,0.22),transparent_70%)] blur-2xl" />
+      <div className="absolute top-[12%] left-[8%] h-[42%] w-[52%] rounded-full bg-[radial-gradient(circle_at_45%_40%,rgba(56,182,232,0.22),rgba(20,118,159,0.12)_45%,transparent_72%)] blur-2xl" />
+      <div className="absolute right-[6%] bottom-[18%] h-[38%] w-[44%] rounded-full bg-[radial-gradient(circle_at_50%_50%,rgba(15,138,134,0.16),transparent_70%)] blur-2xl" />
     </div>
   )
 }
